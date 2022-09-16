@@ -1,23 +1,8 @@
-<form action="input-datadiri.php" method="POST">
-    <label for="nis">Nomor Induk Siswa :</label>
-    <input type="number" name="nis" placeholder="Ex.12333122"/><br>
-
-    <label for="nama">Nama Lengkap :</label>
-    <input type="text" name="nama" placeholder="Ex.Sintha Nur Wulan"/><br>
-
-    <label for="tanggal_lahir">Tanggal Lahir :</label><br>
-    <input type="date" name="tanggal_lahir"/><br>
-
-    <label for="nilai">Nilai:</label><br>
-    <input type="number" name="nilai" placeholder="Ex.80.56"/><br>
-
-<input type="submit" name="simpan" value="Simpan Data"/>
-</form>
-
 <?php
     include('./input-config.php');
+    echo "<a href=' in[ut-datadiri-tambah.php'>Tambah Data</a>";
     echo "<hr>";
-    // Menampilkan data dari database
+    // READ - Menampilkan data dari database
     $no =1;
     $tabledata = "";
     $data = mysqli_query($mysqli,"SELECT * FROM datadiri");
@@ -29,6 +14,11 @@
              <td>".$row["namalengkap"]."</td>
              <td>".$row["tanggal_lahir"]."</td>
              <td>".$row["nilai"]."</td>
+             <td>
+                <a href='input-datadiri-edit.php?nis=".$row["nis"]."'>Edit</a>
+                &nbsp;-&nbsp;
+                <a href='input-datadiri-hapus.php?nis=".$row["nis"]."'>Hapus</a>
+            </td>
         </tr>    
      ";
     $no++;
@@ -41,6 +31,7 @@
                 <th>Nama Lengkap</th>
                 <th>Tanggal Lahir</th>
                 <th>Nilai</th>
+                <th>Aksi</th>
              </tr>
              $tabledata
         </table>    
